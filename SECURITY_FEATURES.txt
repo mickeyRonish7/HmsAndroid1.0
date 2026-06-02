@@ -1,0 +1,76 @@
+# Hostel Management System - Security Features Overview
+
+This document outlines the security measures implemented in the Hostel Management System V2 to ensure the safety of data, privacy of users, and integrity of the application.
+
+==================================================
+1. DATA SECURITY
+==================================================
+
+[X] HTTPS (Secure Connection)
+   - The system is configured to force "HTTPS" links in production environments. This ensures that all communication between the user's browser and the server is encrypted and cannot be intercepted by attackers.
+
+[X] Database Encryption (Sensitive Data)
+   - Personal and sensitive information is now ENCRYPTED in the database. Even if someone gains unauthorized access to the database, they cannot read this information.
+   - Encrypted Fields: 
+     - Address
+     - Parent's Phone Number
+     - Emergency Contact Name & Number
+     - Blood Group
+
+[X] Password Security
+   - Passwords are never stored in plain text. We use industry-standard "Bcrypt" hashing. This means even administrators cannot see user passwords.
+
+==================================================
+2. APPLICATION-LEVEL SECURITY
+==================================================
+
+[X] CAPTCHA (Bot Protection)
+   - A Math CAPTCHA (e.g., "7 + 3 = ?") has been added to the "Login" and "Registration" pages.
+   - This prevents automated bots from creating fake accounts or trying to guess passwords (Brute Force attacks).
+
+[X] Input Validation & Sanitization
+   - All user inputs are strictly validated before processing.
+   - Profile photos are restricted to image files (JPG/PNG) and must be under 1MB to prevent malicious file uploads.
+   - This protects against SQL Injection (hackers trying to mess with the database) and XSS (hackers trying to run malicious scripts).
+
+[X] Backdoor Removal
+   - Removed "Debug Login" routes that allowed bypassing the login screen. Access is now strictly controlled via authentication.
+
+==================================================
+3. PRIVACY & DATA PROTECTION
+==================================================
+
+[X] Limited Data Visibility
+   - Students can strictly only view *their own* data.
+   - Fixed a privacy vulnerability where a student might have been able to see other students' complaints. Now, the system forcibly filters records to the logged-in user's ID.
+
+[X] Audit Logs (Activity Tracking)
+   - A new "Audit Log" system records important actions for accountability.
+   - We now track:
+     - User Logins and Logouts
+     - Admin Approvals and Rejections of users
+     - Room Assignments and Unassignments
+     - Complaint Submissions and Status Updates
+   - Each log includes the User, Action, Timestamp, and IP Address.
+
+==================================================
+4. ROOM & RESOURCE SECURITY
+==================================================
+
+[X] Occupancy Validation
+   - The "Assign Room" feature now strictly checks if a bed is `is_occupied` before assigning it.
+   - This prevents double-booking and ensures accurate inventory management.
+
+[X] Role-Based Access Control (Authorization)
+   - Routes are protected by "Middleware" (e.g., `role:admin`, `role:student`).
+   - A student cannot force their way into an Admin page, and unverified users cannot access key features.
+
+==================================================
+5. SYSTEM & SERVER SECURITY
+==================================================
+
+[X] Disable Directory Listing
+   - The server is configured (via `.htaccess`) to prevent listing of file directories. Attackers cannot simply "browse" your folders to see your code structure.
+
+[X] Environment Protection
+   - Sensitive keys (like Database passwords) are stored in the `.env` file, which is protected from public access.
