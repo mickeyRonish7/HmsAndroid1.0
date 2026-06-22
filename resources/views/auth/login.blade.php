@@ -61,12 +61,6 @@
             @endif
         </div>
 
-        <!-- CAPTCHA -->
-        <div class="mt-4">
-            <label for="captcha" class="block font-medium text-sm text-gray-700">Security Check: {{ $captcha_question }} = ?</label>
-            <input id="captcha" class="block mt-1 w-full px-4 py-2 border-2 border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition" type="number" name="captcha" required />
-        </div>
-
         <div class="mt-6">
             <button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition transform hover:-translate-y-0.5">
                 Log in

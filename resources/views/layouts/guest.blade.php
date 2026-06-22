@@ -22,7 +22,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 relative overflow-hidden">
         <!-- Background Image with Blur -->
         <div class="absolute inset-0 z-0">
-             <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Background">
+             <img class="w-full h-full object-cover" src="{{ asset('images/campus.jpg') }}" alt="Campus">
              <div class="absolute inset-0 bg-blue-900 opacity-50 mix-blend-multiply backdrop-blur-sm"></div>
         </div>
 

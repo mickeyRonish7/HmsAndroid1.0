@@ -112,9 +112,9 @@
 
     <!-- Hero Section -->
     <div class="relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0 animate-gradient-x bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 opacity-80"></div>
         <div class="absolute inset-0">
-             <img class="w-full h-full object-cover opacity-30 mix-blend-overlay" src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Hostel Building">
+             <img class="w-full h-full object-cover opacity-100" src="{{ asset('images/campus.jpg') }}" alt="Campus Aerial View">
+             <div class="absolute inset-0 bg-black opacity-40"></div>
         </div>
         <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col items-start justify-center min-h-[85vh]">
             <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl mb-6 drop-shadow-2xl">

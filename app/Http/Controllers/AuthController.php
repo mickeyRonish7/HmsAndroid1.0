@@ -13,10 +13,7 @@ class AuthController extends Controller
     // Registration
     public function showRegisterForm()
     {
-        $num1 = rand(1, 10);
-        $num2 = rand(1, 10);
-        session(['captcha_answer' => $num1 + $num2]);
-        return view('auth.register', ['captcha_question' => "$num1 + $num2"]);
+        return view('auth.register');
     }
 
     public function register(Request $request)
@@ -34,12 +31,7 @@ class AuthController extends Controller
             'semester' => ['required_if:role,student', 'nullable', 'integer', 'between:1,8'],
             'address' => ['required_if:role,student', 'nullable', 'string', 'max:255'],
             'student_id_number' => ['required_if:role,student', 'nullable', 'string', 'max:50', 'unique:users'],
-            'captcha' => ['required', 'integer'],
         ]);
-
-        if ($request->captcha != session('captcha_answer')) {
-            return back()->withErrors(['captcha' => 'Incorrect CAPTCHA answer.'])->withInput();
-        }
 
         $userData = [
             'name' => $request->name,
@@ -81,10 +73,7 @@ class AuthController extends Controller
     // Login
     public function showLoginForm()
     {
-        $num1 = rand(1, 10);
-        $num2 = rand(1, 10);
-        session(['captcha_answer' => $num1 + $num2]);
-        return view('auth.login', ['captcha_question' => "$num1 + $num2"]);
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -92,15 +81,7 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
-            'captcha' => ['required', 'integer'],
         ]);
-
-        if ($request->captcha != session('captcha_answer')) {
-            return back()->withErrors(['captcha' => 'Incorrect CAPTCHA answer.'])->withInput();
-        }
-
-        // Remove captcha from credentials before auth attempt
-        unset($credentials['captcha']);
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
