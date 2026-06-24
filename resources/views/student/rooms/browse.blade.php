@@ -5,11 +5,11 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if(session('success'))
-                <div class="mb-6 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded-r-lg shadow-sm">
+                <div class="mb-4 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-3 rounded-r-lg shadow-sm">
                     <div class="flex">
                         <div class="flex-shrink-0">
                             <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -40,7 +40,7 @@
             @endif
 
             <!-- Filter Bar -->
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm mb-8 flex flex-wrap items-center justify-between gap-4 border border-gray-100 dark:border-gray-700">
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm mb-5 flex flex-wrap items-center justify-between gap-3 border border-gray-100 dark:border-gray-700">
                 <div class="flex items-center space-x-4">
                     <span class="text-sm font-bold text-gray-500 uppercase tracking-wider">{{ __('Filters') }}:</span>
                     <div class="flex bg-gray-100 dark:bg-gray-900 rounded-lg p-1">
@@ -62,11 +62,11 @@
             </div>
 
             <!-- Rooms Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @forelse($rooms as $room)
-                    <div class="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
+                    <div class="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
                         <!-- Image Container -->
-                        <div class="relative h-64 overflow-hidden">
+                        <div class="relative h-44 overflow-hidden">
                             @if($room->room_photo)
                                 <img src="{{ asset('storage/' . $room->room_photo) }}" alt="Room {{ $room->room_number }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else

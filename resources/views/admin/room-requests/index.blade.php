@@ -5,66 +5,66 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                <div class="p-6">
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Student') }}</th>
-                                    <th class="px-6 py-3 text-left text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Requested Room') }}</th>
-                                    <th class="px-6 py-3 text-left text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Current Assignment') }}</th>
-                                    <th class="px-6 py-3 text-left text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Status') }}</th>
-                                    <th class="px-6 py-3 text-left text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Requested At') }}</th>
-                                    <th class="px-6 py-3 text-right text-xs font-black text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Actions') }}</th>
+                        <table class="min-w-full">
+                            <thead>
+                                <tr class="bg-[#f8f9fa] dark:bg-gray-700/50">
+                                    <th class="px-4 py-3 text-left text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Student') }}</th>
+                                    <th class="px-4 py-3 text-left text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Requested Room') }}</th>
+                                    <th class="px-4 py-3 text-left text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Current Assignment') }}</th>
+                                    <th class="px-4 py-3 text-left text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Status') }}</th>
+                                    <th class="px-4 py-3 text-left text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Requested At') }}</th>
+                                    <th class="px-4 py-3 text-right text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
                                 @forelse($requests as $request)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                    <tr class="hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors">
+                                        <td class="px-4 py-3 whitespace-nowrap">
                                             @if($request->user)
-                                                <div class="flex items-center">
-                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="flex-shrink-0 h-9 w-9">
                                                         @if($request->user->profile_photo_path)
-                                                            <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('storage/' . $request->user->profile_photo_path) }}" alt="">
+                                                            <img class="h-9 w-9 rounded-full object-cover" src="{{ asset('storage/' . $request->user->profile_photo_path) }}" alt="">
                                                         @else
-                                                            <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">
+                                                            <div class="h-9 w-9 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-700 dark:text-blue-300 font-bold text-sm">
                                                                 {{ substr($request->user->name, 0, 1) }}
                                                             </div>
                                                         @endif
                                                     </div>
-                                                    <div class="ml-4">
-                                                        <div class="text-sm font-bold text-gray-900 dark:text-white">{{ $request->user->name }}</div>
-                                                        <div class="text-xs text-gray-500">{{ $request->user->email }}</div>
+                                                    <div>
+                                                        <div class="text-sm font-semibold text-gray-900 dark:text-white">{{ $request->user->name }}</div>
+                                                        <div class="text-xs text-gray-500 dark:text-gray-400">{{ $request->user->email }}</div>
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="text-sm text-red-500 font-bold">{{ __('User Deleted') }}</div>
+                                                <div class="text-sm text-red-500 font-semibold">{{ __('User Deleted') }}</div>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold dark:text-gray-300">
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold dark:text-gray-300">
                                             @if($request->room)
-                                                <div class="flex items-center">
+                                                <div class="flex items-center gap-3">
                                                     @if($request->room->room_photo)
-                                                        <img class="h-10 w-10 rounded-lg object-cover mr-3" src="{{ asset('storage/' . $request->room->room_photo) }}" alt="Room">
+                                                        <img class="h-9 w-9 rounded-lg object-cover" src="{{ asset('storage/' . $request->room->room_photo) }}" alt="Room">
                                                     @else
-                                                        <div class="h-10 w-10 rounded-lg bg-gray-100 flex items-center justify-center mr-3">
-                                                            <span class="text-[8px] font-bold text-gray-400">NO IMG</span>
+                                                        <div class="h-9 w-9 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                                                            <span class="text-[8px] font-semibold text-gray-400">NO IMG</span>
                                                         </div>
                                                     @endif
                                                     <div>
                                                         Room {{ $request->room->room_number }}
-                                                        <span class="block text-[10px] font-medium text-gray-400 font-black uppercase tracking-widest mt-1">{{ $request->room->type }}</span>
+                                                        <span class="block text-[10px] font-medium text-gray-400 dark:text-gray-500 mt-0.5">{{ $request->room->type }}</span>
                                                     </div>
                                                 </div>
                                             @else
-                                                <span class="text-red-500 font-bold text-xs">{{ __('Room Deleted') }}</span>
+                                                <span class="text-red-500 font-semibold text-xs">{{ __('Room Deleted') }}</span>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                             @if($request->user && $request->user->bed)
                                                 @if($request->user->bed->room)
                                                     Room {{ $request->user->bed->room->room_number }} (Bed {{ $request->user->bed->bed_number }})
@@ -72,29 +72,38 @@
                                                     Bed {{ $request->user->bed->bed_number }} (Room Deleted)
                                                 @endif
                                             @else
-                                                <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{{ __('Unassigned') }}</span>
+                                                <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded font-medium">{{ __('Unassigned') }}</span>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-black uppercase tracking-widest rounded-full 
-                                                {{ $request->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
-                                                {{ $request->status === 'approved' ? 'bg-green-100 text-green-800' : '' }}
-                                                {{ $request->status === 'rejected' ? 'bg-red-100 text-red-800' : '' }}
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-full
+                                                {{ $request->status === 'pending' ? 'bg-amber-50 text-amber-700 ring-1 ring-amber-200' : '' }}
+                                                {{ $request->status === 'approved' ? 'bg-green-50 text-green-700 ring-1 ring-green-200' : '' }}
+                                                {{ $request->status === 'rejected' ? 'bg-red-50 text-red-700 ring-1 ring-red-200' : '' }}
                                             ">
                                                 {{ ucfirst($request->status) }}
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                             {{ $request->created_at->diffForHumans() }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <td class="px-4 py-3 whitespace-nowrap text-right">
                                             @if($request->status === 'pending')
-                                                <div x-data="{ open: false, rejectOpen: false }" class="flex items-center justify-end space-x-2">
-                                                    <!-- Approve Button -->
-                                                    <button @click="open = true" class="text-green-600 hover:text-green-900 dark:hover:text-green-400 font-bold border border-green-200 dark:border-green-800 px-3 py-1 rounded-md transition-colors">{{ __('Approve') }}</button>
+                                                <div x-data="{ open: false, rejectOpen: false }" class="flex items-center justify-end gap-1">
+                                                    <!-- Approve Icon -->
+                                                    <button @click="open = true" title="{{ __('Approve') }}" class="p-1.5 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                                    </button>
                                                     
-                                                    <!-- Reject Button -->
-                                                    <button @click="rejectOpen = true" class="text-red-600 hover:text-red-900 dark:hover:text-red-400 font-bold border border-red-200 dark:border-red-800 px-3 py-1 rounded-md transition-colors">{{ __('Reject') }}</button>
+                                                    <!-- Reject Icon -->
+                                                    <button @click="rejectOpen = true" title="{{ __('Reject') }}" class="p-1.5 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    </button>
+                                                    
+                                                    <!-- View Icon -->
+                                                    <button title="{{ __('View') }}" class="p-1.5 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                                    </button>
 
                                                     <!-- Approve Modal -->
                                                     <template x-teleport="body">
@@ -146,8 +155,10 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-6 py-20 text-center text-gray-500 dark:text-gray-400">
-                                            {{ __('No pending room requests found.') }}
+                                        <td colspan="6" class="px-4 py-16 text-center">
+                                            <svg class="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                                            <p class="text-sm text-gray-400 dark:text-gray-500 font-medium">{{ __('No pending room requests found.') }}</p>
+                                            <p class="text-xs text-gray-300 dark:text-gray-600 mt-1">{{ __('All requests have been reviewed.') }}</p>
                                         </td>
                                     </tr>
                                 @endforelse

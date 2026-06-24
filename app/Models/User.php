@@ -22,8 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // admin, warden, student
+        'role',
         'phone',
+        'gender',
         'parent_phone',
         'address',
         'year',
@@ -35,6 +36,7 @@ class User extends Authenticatable
         'profile_photo_path',
         'bed_id',
         'student_id_number',
+        'admission_no',
         'locale',
         'theme',
         'font_size',

@@ -10,51 +10,51 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Total Feedback') }}</p>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalFeedbacks }}</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Total Feedback') }}</p>
+                    <p class="text-xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalFeedbacks }}</p>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-yellow-500">
-                    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Room Rating') }}</p>
-                    <div class="flex items-end space-x-2">
-                        <p class="text-3xl font-bold mt-1">{{ number_format($averageRatings['room'], 1) }}</p>
-                        <span class="mb-1 text-lg">/ 5</span>
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-yellow-500">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Room Rating') }}</p>
+                    <div class="flex items-end space-x-1">
+                        <p class="text-xl font-bold mt-1">{{ number_format($averageRatings['room'], 1) }}</p>
+                        <span class="mb-0.5 text-sm">/ 5</span>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-blue-500">
-                    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Mess Rating') }}</p>
-                    <div class="flex items-end space-x-2">
-                        <p class="text-3xl font-bold mt-1">{{ number_format($averageRatings['mess'], 1) }}</p>
-                        <span class="mb-1 text-lg">/ 5</span>
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-blue-500">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Mess Rating') }}</p>
+                    <div class="flex items-end space-x-1">
+                        <p class="text-xl font-bold mt-1">{{ number_format($averageRatings['mess'], 1) }}</p>
+                        <span class="mb-0.5 text-sm">/ 5</span>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-green-500">
-                    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Security Rating') }}</p>
-                    <div class="flex items-end space-x-2">
-                        <p class="text-3xl font-bold mt-1">{{ number_format($averageRatings['security'], 1) }}</p>
-                        <span class="mb-1 text-lg">/ 5</span>
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-green-500">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">{{ __('Avg. Security Rating') }}</p>
+                    <div class="flex items-end space-x-1">
+                        <p class="text-xl font-bold mt-1">{{ number_format($averageRatings['security'], 1) }}</p>
+                        <span class="mb-0.5 text-sm">/ 5</span>
                     </div>
                 </div>
             </div>
 
             <!-- Charts Row -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Rating Distribution -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ __('General Satisfaction') }}</h3>
-                    <div class="h-64">
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3">{{ __('General Satisfaction') }}</h3>
+                    <div class="h-56">
                         <canvas id="satisfactionChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Monthly Trends -->
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ __('Monthly Feedback Volume') }}</h3>
-                    <div class="h-64">
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3">{{ __('Monthly Feedback Volume') }}</h3>
+                    <div class="h-56">
                         <canvas id="trendChart"></canvas>
                     </div>
                 </div>

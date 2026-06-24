@@ -15,14 +15,14 @@
                         <div class="bg-white dark:bg-gray-900 rounded-[15px] p-6 text-gray-900 dark:text-white relative">
                             <!-- Watermark / Logo -->
                             <div class="absolute top-0 right-0 p-4 opacity-10">
-                                <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                                <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="w-32 h-32 rounded-full object-cover">
                             </div>
 
                             <!-- Header -->
                             <div class="flex items-center justify-between mb-8">
                                 <div class="flex items-center space-x-3">
-                                    <div class="bg-blue-600 p-2 rounded-lg">
-                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                                    <div class="rounded-full overflow-hidden w-10 h-10 border-2 border-blue-100 shadow">
+                                        <img src="{{ asset('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" class="w-full h-full object-cover">
                                     </div>
                                     <div>
                                         <h1 class="text-lg font-bold tracking-tight uppercase leading-none">{{ config('app.name') }}</h1>

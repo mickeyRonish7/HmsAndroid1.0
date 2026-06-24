@@ -21,5 +21,36 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, \Illuminate\Http\Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'status'  => 'unauthenticated',
+                    'message' => 'Login required',
+                ], 401);
+            }
+        });
+
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, \Illuminate\Http\Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'status'  => 'error',
+                    'message' => 'Not found',
+                ], 404);
+            }
+        });
+
+        $exceptions->render(function (\Throwable $e, \Illuminate\Http\Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                $statusCode = $e instanceof \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface
+                    ? $e->getStatusCode()
+                    : 500;
+
+                if ($statusCode >= 500) {
+                    return response()->json([
+                        'status'  => 'error',
+                        'message' => 'Server error',
+                    ], 500);
+                }
+            }
+        });
     })->create();

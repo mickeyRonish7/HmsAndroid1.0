@@ -14,7 +14,8 @@
             overflow: hidden;
             border-left: 8px solid #4f46e5;
         }
-        .header { margin-bottom: 10px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
+        .header { margin-bottom: 10px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .header-logo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
         .header h1 { font-size: 14px; margin: 0; color: #1e1b4b; text-transform: uppercase; }
         .header p { font-size: 8px; margin: 2px 0; color: #6b7280; font-weight: bold; }
         .photo {
@@ -45,8 +46,11 @@
 <body>
     <div class="id-card">
         <div class="header">
-            <h1>{{ config('app.name') }}</h1>
-            <p>{{ __('STUDENT ID CARD') }}</p>
+            <img src="{{ public_path('images/logo.jpg') }}" alt="Logo" class="header-logo">
+            <div>
+                <h1>{{ config('app.name') }}</h1>
+                <p>{{ __('STUDENT ID CARD') }}</p>
+            </div>
         </div>
 
         <div class="photo">

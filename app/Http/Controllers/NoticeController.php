@@ -33,6 +33,8 @@ class NoticeController extends Controller
             $data['attachment'] = $path;
         }
 
+        $data['user_id'] = auth()->id();
+
         $notice = Notice::create($data);
 
         // Log notice creation

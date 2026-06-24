@@ -216,8 +216,13 @@
     <div class="pass-container">
         <!-- Header -->
         <div class="pass-header">
-            <h1>Hostel Visitor Pass</h1>
-            <p>Valid for approved visit</p>
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                <img src="{{ public_path('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.5);">
+                <div>
+                    <h1>Hostel Visitor Pass</h1>
+                    <p>Manmohan Memorial Polytechnic — Valid for approved visit</p>
+                </div>
+            </div>
         </div>
 
         <!-- Pass ID and Status -->

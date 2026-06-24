@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notice extends Model
 {
-    protected $fillable = ['title', 'content', 'audience', 'attachment'];
+    protected $fillable = ['user_id', 'title', 'content', 'audience', 'attachment'];
+
+    public function postedBy()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

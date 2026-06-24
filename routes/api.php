@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\AdminController as ApiAdminController;
+use App\Http\Controllers\Api\AttendanceController as ApiAttendanceController;
+use App\Http\Controllers\Api\ComplaintController as ApiComplaintController;
+use App\Http\Controllers\Api\FeeController;
 use App\Http\Controllers\Api\MobileAuthController;
+use App\Http\Controllers\Api\RoomController;
+use App\Http\Controllers\Api\NoticeController as ApiNoticeController;
+use App\Http\Controllers\Api\VisitorController as ApiVisitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,12 +30,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ── Health check (no token required) ─────────────────────────────────────
+
+Route::get('test', function () {
+    return response()->json([
+        'status'  => 'success',
+        'message' => 'API working',
+    ]);
+});
+
 // ── Public endpoints (no token required) ─────────────────────────────────
 Route::prefix('auth')->group(function () {
     Route::post('register',                [MobileAuthController::class, 'register']);
     Route::post('login',                   [MobileAuthController::class, 'login']);
     Route::post('password/send-otp',       [MobileAuthController::class, 'sendOtp']);
     Route::post('password/verify-otp',     [MobileAuthController::class, 'verifyOtp']);
+});
+
+// ── Admin-specific endpoints ──────────────────────────────────────────────
+Route::prefix('admin')->group(function () {
+    // POST /api/admin/login — admins only, returns Bearer token + admin info
+    Route::post('login',                   [ApiAdminController::class, 'login']);
+});
+
+// ── Student-specific endpoints ────────────────────────────────────────────
+Route::prefix('student')->group(function () {
+    // POST /api/student/register — students only, returns Bearer token + student info
+    Route::post('register',                [MobileAuthController::class, 'studentRegister']);
+    // POST /api/student/login — students only, returns Bearer token + student info
+    Route::post('login',                   [MobileAuthController::class, 'studentLogin']);
+});
+
+// ── Room endpoints (public — no token required) ───────────────────────────
+Route::prefix('rooms')->group(function () {
+    Route::get('/',           [RoomController::class, 'index']);      // GET /api/rooms
+    Route::get('available',   [RoomController::class, 'available']);  // GET /api/rooms/available
+    Route::get('{id}',        [RoomController::class, 'show']);       // GET /api/rooms/{id}
 });
 
 // ── Protected endpoints (token required) ─────────────────────────────────
@@ -39,4 +76,44 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Password reset — requires the special reset_token from verify-otp step
     Route::post('auth/password/reset',     [MobileAuthController::class, 'resetPassword']);
+
+    // ── Student protected endpoints ───────────────────────────────────────
+    Route::prefix('student')->group(function () {
+        Route::get('profile',              [MobileAuthController::class, 'studentProfile']);
+    });
+
+    // ── Fee endpoints (student only) ──────────────────────────────────────
+    Route::prefix('fees')->group(function () {
+        Route::get('my',       [FeeController::class, 'myFees']);      // GET /api/fees/my
+        Route::get('receipts', [FeeController::class, 'myReceipts']);  // GET /api/fees/receipts
+    });
+
+    // ── Attendance endpoints (student only) ───────────────────────────────
+    Route::prefix('attendance')->group(function () {
+        Route::get('my',       [ApiAttendanceController::class, 'myAttendance']); // GET  /api/attendance/my
+        Route::post('checkin', [ApiAttendanceController::class, 'checkIn']);      // POST /api/attendance/checkin
+        Route::post('checkout',[ApiAttendanceController::class, 'checkOut']);     // POST /api/attendance/checkout
+    });
+
+    // ── Complaint endpoints (student only) ────────────────────────────────
+    Route::prefix('complaints')->group(function () {
+        Route::post('/',   [ApiComplaintController::class, 'store']);        // POST /api/complaints
+        Route::get('my',   [ApiComplaintController::class, 'myComplaints']); // GET  /api/complaints/my
+    });
+
+    // ── Visitor endpoints (student only) ──────────────────────────────────
+    Route::prefix('visitors')->group(function () {
+        Route::post('/',  [ApiVisitorController::class, 'store']);       // POST /api/visitors
+        Route::get('my',  [ApiVisitorController::class, 'myVisitors']);  // GET  /api/visitors/my
+    });
+
+    // ── Notice endpoints (any authenticated user) ──────────────────────────
+    Route::prefix('notices')->group(function () {
+        Route::get('/',   [ApiNoticeController::class, 'index']);        // GET /api/notices
+    });
+
+    // ── Admin protected endpoints ──────────────────────────────────────────
+    Route::prefix('admin')->group(function () {
+        Route::get('dashboard',            [ApiAdminController::class, 'dashboard']); // GET /api/admin/dashboard
+    });
 });

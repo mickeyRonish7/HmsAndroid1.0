@@ -10,14 +10,14 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <div class="py-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
             
             <!-- Room Information Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
                 <div class="flex flex-col lg:flex-row">
                     <!-- Room Photo -->
-                    <div class="lg:w-2/5 relative min-h-[300px]">
+                    <div class="lg:w-2/5 relative min-h-[220px]">
                         @if($room->room_photo)
                             <img src="{{ asset('storage/' . $room->room_photo) }}" class="absolute inset-0 w-full h-full object-cover">
                         @else
@@ -32,25 +32,25 @@
                     </div>
 
                     <!-- Room Details -->
-                    <div class="lg:w-3/5 p-6">
-                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Room {{ $room->room_number }}</h3>
+                    <div class="lg:w-3/5 p-4">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Room {{ $room->room_number }}</h3>
                         
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                            <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Total Beds</p>
-                                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $room->capacity }}</p>
+                                <p class="text-xl font-bold text-gray-900 dark:text-white">{{ $room->capacity }}</p>
                             </div>
-                            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Occupied</p>
-                                <p class="text-2xl font-bold text-red-600">{{ $room->occupiedBedsCount() }}</p>
+                                <p class="text-xl font-bold text-red-600">{{ $room->occupiedBedsCount() }}</p>
                             </div>
-                            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Available</p>
-                                <p class="text-2xl font-bold text-green-600">{{ $room->availableBedsCount() }}</p>
+                                <p class="text-xl font-bold text-green-600">{{ $room->availableBedsCount() }}</p>
                             </div>
-                            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                                 <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Occupancy</p>
-                                <p class="text-2xl font-bold text-blue-600">{{ $room->capacity > 0 ? round(($room->occupiedBedsCount() / $room->capacity) * 100) : 0 }}%</p>
+                                <p class="text-xl font-bold text-blue-600">{{ $room->capacity > 0 ? round(($room->occupiedBedsCount() / $room->capacity) * 100) : 0 }}%</p>
                             </div>
                         </div>
 

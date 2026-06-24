@@ -6,8 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Hostel Management') }}</title>
     <!-- Home Logo Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' fill='%231e40af'/></svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' fill='%231e40af'/></svg">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
@@ -29,10 +29,10 @@
         <!-- Logo -->
         <div class="relative z-10 mb-6">
             <a href="/" class="flex flex-col items-center">
-                <div class="bg-white p-3 rounded-full shadow-lg mb-2">
-                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <div class="bg-white p-2 rounded-full shadow-lg mb-2">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" class="w-16 h-16 rounded-full object-cover">
                 </div>
-                <span class="text-3xl font-bold text-white tracking-wider drop-shadow-md">HMS</span>
+                <span class="text-xl font-bold text-white tracking-wider drop-shadow-md text-center">Manmohan Memorial Polytechnic</span>
             </a>
         </div>
 

@@ -10,11 +10,11 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if(session('success'))
-                <div class="mb-6 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded-r-lg shadow-sm">
+                <div class="mb-4 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-3 rounded-r-lg shadow-sm">
                     <div class="flex">
                         <div class="flex-shrink-0">
                             <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -44,10 +44,10 @@
                 </div>
             @endif
 
-            <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
                 <div class="flex flex-col lg:flex-row">
                     <!-- Photo Gallery / Main Image -->
-                    <div class="lg:w-3/5 relative min-h-[400px]">
+                    <div class="lg:w-3/5 relative min-h-[280px]">
                         @if($room->room_photo)
                             <img src="{{ asset('storage/' . $room->room_photo) }}" class="absolute inset-0 w-full h-full object-cover">
                         @else
@@ -64,13 +64,13 @@
                     </div>
 
                     <!-- Details and Booking -->
-                    <div class="lg:w-2/5 p-8 lg:p-12 flex flex-col">
-                        <div class="mb-10">
-                            <h3 class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">{{ __('Room Number') }}</h3>
-                            <h1 class="text-5xl font-black text-gray-900 dark:text-white">{{ $room->room_number }}</h1>
+                    <div class="lg:w-2/5 p-5 lg:p-7 flex flex-col">
+                        <div class="mb-5">
+                            <h3 class="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">{{ __('Room Number') }}</h3>
+                            <h1 class="text-3xl font-black text-gray-900 dark:text-white">{{ $room->room_number }}</h1>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-8 mb-10">
+                        <div class="grid grid-cols-2 gap-4 mb-5">
                             <div>
                                 <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('Total Capacity') }}</h4>
                                 <p class="text-xl font-bold dark:text-white">{{ $room->capacity }} {{ __('Beds') }}</p>
@@ -84,8 +84,8 @@
                         </div>
 
                         <!-- Amenities List -->
-                        <div class="mb-10">
-                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('Room Amenities') }}</h4>
+                        <div class="mb-5">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('Room Amenities') }}</h4>
                             <div class="grid grid-cols-2 gap-y-3">
                                 @php
                                     $amenities = [

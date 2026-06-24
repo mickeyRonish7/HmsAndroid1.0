@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Hostel Management') }}</title>
     <!-- Home Logo Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' fill='%231e40af'/></svg">
-    <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' fill='%231e40af'/></svg">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
@@ -37,33 +37,30 @@
 <body class="antialiased text-gray-800 bg-white" x-data="{ loaded: false }" x-init="setTimeout(() => loaded = true, 100)">
 
     <!-- Navigation -->
-    <nav x-data="{ open: false }" class="absolute w-full z-20 top-0 left-0 bg-blue-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-6">
+    <nav x-data="{ open: false }" class="absolute z-20 top-0 left-0 bg-blue-700" style="display:flex; align-items:center; width:100%; max-width:100%; overflow:visible;">
+        <div style="width:100%; max-width:100%; padding:0 20px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:nowrap; width:100%; padding:12px 0;">
                 <!-- Logo -->
-                <div class="flex justify-start">
-                    <a href="#" class="flex items-center">
-                         <!-- Icon -->
-                         <div class="bg-blue-600 p-2 rounded-lg mr-2">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                         </div>
-                        <span class="text-2xl font-bold text-white tracking-wide">HMS</span>
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center" style="white-space:nowrap;">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" class="h-8 w-8 rounded-full object-cover shadow-lg mr-2">
+                        <span class="font-bold text-white tracking-wide leading-tight" style="font-size:13px;">Manmohan Memorial<br><span style="font-size:11px;" class="font-semibold">Polytechnic</span></span>
                     </a>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-200 hover:text-white transition font-medium">Features</a>
-                    <a href="#rules" class="text-gray-200 hover:text-white transition font-medium">Rules</a>
-                    <a href="#contact" class="text-gray-200 hover:text-white transition font-medium">Contact</a>
-                    <a href="#form-notices" class="text-gray-200 hover:text-white transition font-medium">Form Notices</a>
+                <div class="hidden md:flex items-center" style="gap:16px;">
+                    <a href="#features" class="text-gray-200 hover:text-white transition font-medium" style="font-size:13px; white-space:nowrap;">Features</a>
+                    <a href="#rules" class="text-gray-200 hover:text-white transition font-medium" style="font-size:13px; white-space:nowrap;">Rules</a>
+                    <a href="#contact" class="text-gray-200 hover:text-white transition font-medium" style="font-size:13px; white-space:nowrap;">Contact</a>
+                    <a href="#form-notices" class="text-gray-200 hover:text-white transition font-medium" style="font-size:13px; white-space:nowrap;">Form Notices</a>
                     
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="px-5 py-2 bg-white text-blue-700 font-bold rounded-full hover:bg-gray-100 transition shadow-lg">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="bg-white text-blue-700 font-bold rounded-full hover:bg-gray-100 transition shadow-lg" style="font-size:12.5px; padding:6px 14px; white-space:nowrap;">Dashboard</a>
                         @else
-                            <a href="{{ route('login') }}" class="px-5 py-2 bg-transparent text-white font-bold rounded-full hover:bg-white/10 transition border border-white/30 mr-2">Log in</a>
-                            <a href="{{ route('register') }}" class="px-5 py-2 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 transition shadow-lg border border-blue-500">Get Started</a>
+                            <a href="{{ route('login') }}" class="bg-transparent text-white font-bold rounded-full hover:bg-white/10 transition border border-white/30" style="font-size:12.5px; padding:6px 14px; white-space:nowrap;">Log in</a>
+                            <a href="{{ route('register') }}" class="bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 transition shadow-lg border border-blue-500" style="font-size:12.5px; padding:6px 14px; white-space:nowrap;">Get Started</a>
                         @endauth
                     @endif
                 </div>
@@ -82,7 +79,8 @@
             <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="px-5 pt-4 flex items-center justify-between">
                     <div class="flex items-center">
-                        <span class="text-2xl font-bold text-blue-600">HMS</span>
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" class="h-8 w-8 rounded-full object-cover mr-2">
+                        <span class="text-base font-bold text-blue-600 leading-tight">Manmohan Memorial Polytechnic</span>
                     </div>
                     <div class="-mr-2">
                         <button @click="open = false" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
@@ -279,7 +277,10 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-400">
                 <div>
-                    <h3 class="text-white text-lg font-bold mb-4">Smart HMS</h3>
+                    <div class="flex items-center gap-3 mb-3">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Manmohan Memorial Polytechnic" class="h-10 w-10 rounded-full object-cover">
+                        <h3 class="text-white text-lg font-bold">Manmohan Memorial Polytechnic</h3>
+                    </div>
                     <p class="text-sm">
                         Providing a home away from home for students. Secure, comfortable, and conducive to learning.
                     </p>
